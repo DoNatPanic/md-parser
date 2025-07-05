@@ -1,4 +1,4 @@
-package com.example.md_parser
+package com.example.md_parser.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

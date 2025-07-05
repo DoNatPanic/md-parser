@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">md-parser</string>
+    <string name="start_toolbar_str">Просмотр .md файлов</string>
+    <string name="load_toolbar_str">Загрузка файла</string>
+    <string name="save_button_str">Сохранить</string>
+    <string name="cancel_button_str">Сбросить</string>
+    <string name="load_button_str">Загрузить</string>
+    <string name="load_button_nav_str">Загрузить файл</string>
+    <string name="file_name_default_str">Файл не выбран</string>
+    <string name="input_url_hint_str">Введите URL</string>
+    <string name="file_tab_title">Из файла</string>
+    <string name="link_tab_title">По ссылке</string>
+    <string name="preview_tab_title">Превью</string>
+    <string name="edit_tab_title">Редактирование</string>
 </resources>

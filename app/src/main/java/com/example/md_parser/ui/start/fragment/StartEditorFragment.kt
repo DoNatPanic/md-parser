@@ -1,4 +1,4 @@
-package com.example.md_parser
+package com.example.md_parser.ui.start.fragment
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -6,14 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.md_parser.R
+import com.example.md_parser.ui.start.view_model.StartEditorViewModel
 
-class StartFragment : Fragment() {
+class StartEditorFragment : Fragment() {
 
     companion object {
-        fun newInstance() = StartFragment()
+        fun newInstance() = StartEditorFragment()
     }
 
-    private val viewModel: StartViewModel by viewModels()
+    private val viewModel: StartEditorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,6 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_start, container, false)
+        return inflater.inflate(R.layout.fragment_start_editor, container, false)
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FragmentBgStyle"
+    tools:context=".ui.upload.fragment.UploadFileFragment">
+
+    <LinearLayout
+        android:id="@+id/layout_file_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_upload_icon"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:clickable="true"
+            android:src="@drawable/outline_attach_file" />
+
+        <TextView
+            android:id="@+id/file_name"
+            style="@style/RegularTextStyle"
+            android:layout_marginStart="@dimen/upload_text_margin_start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/file_name_default_str" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_upload"
+        style="@style/ProgressBarStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/progress_bar_margin_top"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_file_select" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

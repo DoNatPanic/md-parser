@@ -1,4 +1,4 @@
-package com.example.md_parser
+package com.example.md_parser.ui.start.view_model
 
 import androidx.lifecycle.ViewModel
 

@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.md_parser.StartFragment"
+        android:name="com.example.md_parser.ui.start.fragment.StartFragment"
         android:label="fragment_start"
-        tools:layout="@layout/fragment_start" />
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_uploadFragment"
+            app:destination="@id/uploadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadFragment"
+        android:name="com.example.md_parser.ui.upload.fragment.UploadFragment"
+        android:label="fragment_upload"
+        tools:layout="@layout/fragment_upload" />
 </navigation>

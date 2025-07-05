@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <style name="ToolbarTextStyle" parent="@style/TextAppearance.MaterialComponents.Headline6">
+        <item name="android:fontWeight">500</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?attr/blackToWhite</item>
+    </style>
+
+    <style name="RegularTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontWeight">400</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/blackToWhite</item>
+    </style>
+
+    <style name="SimpleToolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/blackToWhite</item>
+        <item name="android:background">?attr/whiteToBlackLight</item>
+        <item name="navigationIconTint">?attr/blackToWhite</item>
+        <item name="titleTextAppearance">@style/ToolbarTextStyle</item>
+    </style>
+
+    <style name="FragmentBgStyle">
+        <item name="android:background">?attr/whiteToBlackLight</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="SimpleButtonStyle">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/blackToWhite</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_marginBottom">@dimen/button_margin_bottom</item>
+    </style>
+
+    <style name="GuidelineLeftStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="layout_constraintGuide_percent">@dimen/guideline_left</item>
+    </style>
+
+    <style name="GuidelineRightStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="layout_constraintGuide_percent">@dimen/guideline_right</item>
+    </style>
+
+    <style name="SimpleTabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="tabTextColor">?attr/blackToWhite</item>
+        <item name="tabIndicatorColor">?attr/blackToWhite</item>
+        <item name="android:background">?attr/whiteToBlackLight</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabTextAppearance">@style/TabTextAppearance</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ProgressBarStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminate">false</item>
+        <item name="android:max">100</item>
+        <item name="android:progress">0</item>
+    </style>
+
+</resources>
