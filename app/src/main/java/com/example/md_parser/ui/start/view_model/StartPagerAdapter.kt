@@ -1,14 +1,11 @@
 package com.example.md_parser.ui.start.view_model
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.md_parser.ui.start.fragment.StartEditorFragment
 import com.example.md_parser.ui.start.fragment.StartViewerFragment
 
-class StartPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
+class StartPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 2
 

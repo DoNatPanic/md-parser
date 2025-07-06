@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.md_parser.R
-import com.example.md_parser.ui.start.view_model.StartEditorViewModel
+import com.example.md_parser.ui.start.view_model.StartViewModel
 
 class StartEditorFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class StartEditorFragment : Fragment() {
         fun newInstance() = StartEditorFragment()
     }
 
-    private val viewModel: StartEditorViewModel by viewModels()
+    private val viewModel: StartViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

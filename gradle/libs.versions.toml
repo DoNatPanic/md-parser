@@ -15,10 +15,8 @@ lifecycleViewmodelKtx = "2.8.7"
 fragmentKtx = "1.8.6"
 navigationFragmentKtx = "2.9.1"
 navigationUiKtx = "2.9.1"
-koinAndroid = "3.3.0"
 
 [libraries]
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

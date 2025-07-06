@@ -21,7 +21,7 @@ import com.example.md_parser.R
 import com.example.md_parser.databinding.FragmentStartViewerBinding
 import com.example.md_parser.parser.BlockElement
 import com.example.md_parser.parser.InlineElement
-import com.example.md_parser.ui.start.view_model.StartViewerViewModel
+import com.example.md_parser.ui.start.view_model.StartViewModel
 
 class StartViewerFragment : Fragment() {
 
@@ -30,7 +30,7 @@ class StartViewerFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentStartViewerBinding
-    private val viewModel: StartViewerViewModel by viewModels()
+    private val viewModel: StartViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     private lateinit var markupElements: List<BlockElement>
     private val images = mutableListOf<Pair<ImageView, String>>()

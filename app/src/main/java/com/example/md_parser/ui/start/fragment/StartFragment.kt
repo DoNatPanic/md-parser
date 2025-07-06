@@ -5,26 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.md_parser.R
-import com.example.md_parser.ui.start.view_model.StartViewModel
 import com.example.md_parser.databinding.FragmentStartBinding
-import com.example.md_parser.ui.start.view_model.StartEditorViewModel
 import com.example.md_parser.ui.start.view_model.StartPagerAdapter
-import com.example.md_parser.ui.start.view_model.StartViewerViewModel
-import com.example.md_parser.ui.upload.view_model.UploadFileViewModel
-import com.example.md_parser.ui.upload.view_model.UploadPagerAdapter
-import com.example.md_parser.ui.upload.view_model.UploadUrlViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class StartFragment : Fragment() {
 
-    private val startViewerViewModel: StartViewerViewModel by viewModels()
-    private val startEditorModel: StartEditorViewModel by viewModels()
-
     private lateinit var binding: FragmentStartBinding
-
     private lateinit var tabMediator: TabLayoutMediator
 
     override fun onCreateView(
@@ -51,10 +40,7 @@ class StartFragment : Fragment() {
             )
         }
 
-        binding.pager.adapter = StartPagerAdapter(
-            requireActivity().supportFragmentManager,
-            lifecycle
-        )
+        binding.pager.adapter = StartPagerAdapter(this)
 
         tabMediator = TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             when (position) {
