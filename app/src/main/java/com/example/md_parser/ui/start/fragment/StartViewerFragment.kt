@@ -31,22 +31,25 @@ class StartViewerFragment : Fragment() {
 
     private lateinit var binding: FragmentStartViewerBinding
     private val viewModel: StartViewModel by viewModels(ownerProducer = { requireParentFragment() })
-
-    private lateinit var markupElements: List<BlockElement>
     private val images = mutableListOf<Pair<ImageView, String>>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        markupElements = viewModel.getMarkupElements()
-        viewModel.bitmapsLiveData.observe(this) { bitmaps -> updateBitmaps(bitmaps) }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentStartViewerBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    private fun render(markupElements: List<BlockElement>) {
+        binding.insertPoint.removeAllViews()
+
+        if (markupElements.isEmpty()) {
+            binding.searchDefaultPlaceholderImage.visibility = View.VISIBLE
+            return
+        }
+
+        binding.searchDefaultPlaceholderImage.visibility = View.GONE
 
         for (element in markupElements) {
             when (element) {
@@ -133,8 +136,15 @@ class StartViewerFragment : Fragment() {
 
             }
         }
+    }
 
-        return binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.markupElementsLiveData.observe(viewLifecycleOwner) { newMarkup ->
+            render(newMarkup)
+        }
+        viewModel.bitmapsLiveData.observe(viewLifecycleOwner) { bitmaps -> updateBitmaps(bitmaps) }
     }
 
     private fun updateBitmaps(bitmaps: Map<String, Bitmap>) {

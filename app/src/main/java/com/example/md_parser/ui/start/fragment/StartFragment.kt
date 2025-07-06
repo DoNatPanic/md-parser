@@ -27,7 +27,7 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loadNavBtn.setOnClickListener{
+        binding.loadNavBtn.setOnClickListener {
             findNavController().navigate(
                 R.id.action_startFragment_to_uploadFragment,
                 null

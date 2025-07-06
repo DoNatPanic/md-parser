@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.example.md_parser.parser.BlockElement
 import com.example.md_parser.parser.InlineElement
@@ -17,13 +18,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class StartViewModel : ViewModel() {
-    private val markupElementsData = MutableLiveData<List<BlockElement>>()
-    val markupElementsLiveData: LiveData<List<BlockElement>> = markupElementsData
-
-    private val bitmaps = MutableLiveData<MutableMap<String, Bitmap>>(mutableMapOf())
-    val bitmapsLiveData: LiveData<MutableMap<String, Bitmap>> = bitmaps
-
-    private val markup = """
+    private val markupData = MutableLiveData("""
         ### Lorem ipsum
         
         Lorem ipsum **dolor sit amet**, consectetur adipiscing elit. Aliquam dui nunc, ultricies
@@ -55,14 +50,27 @@ class StartViewModel : ViewModel() {
         Integer euismod accumsan gravida. Quisque ut ipsum in nisi iaculis sodales. Curabitur
         pharetra arcu ex, malesuada blandit libero placerat ultrices. Duis id lacus vestibulum,
         congue lorem in, eleifend augue.
-        """.trimIndent()
+        """.trimIndent())
+    val markupLiveData: LiveData<String> = markupData
 
-    fun getMarkupElements(): List<BlockElement> {
+    private val bitmaps = MutableLiveData<MutableMap<String, Bitmap>>(mutableMapOf())
+    val bitmapsLiveData: LiveData<MutableMap<String, Bitmap>> = bitmaps
+
+    val markupElementsLiveData: LiveData<List<BlockElement>> = markupLiveData.map {
+        markup -> getMarkupElements(markup)
+    }
+
+    fun setMarkup(newMarkup: String) {
+        markupData.postValue(newMarkup)
+    }
+
+    private fun getMarkupElements(markup: String): List<BlockElement> {
         val elements = MarkdownParser.parse(markup)
 
-        val par = elements.filterIsInstance<BlockElement.Paragraph>()
-        val chi = par.flatMap { it.children }
-        val images = chi.filterIsInstance<InlineElement.Image>()
+        val images = elements
+            .filterIsInstance<BlockElement.Paragraph>()
+            .flatMap { it.children }
+            .filterIsInstance<InlineElement.Image>()
         val imageUrls = images.map { it.url }.toSet()
 
         viewModelScope.launch(Dispatchers.IO) {

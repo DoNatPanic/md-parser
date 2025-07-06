@@ -41,40 +41,9 @@
         android:id="@+id/pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/cancelBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/rightGuideline"
         app:layout_constraintStart_toStartOf="@id/leftGuideline"
         app:layout_constraintTop_toBottomOf="@id/tabLayout" />
-
-<!--    <ImageView-->
-<!--        android:id="@+id/search_default_placeholder_image"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:adjustViewBounds="true"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/toolbar"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/cancelBtn"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/rightGuideline"-->
-<!--        app:layout_constraintStart_toStartOf="@id/leftGuideline"-->
-<!--        android:src="@drawable/empty_placeholder" />-->
-
-    <Button
-        android:id="@+id/cancelBtn"
-        style="@style/SimpleButtonStyle"
-        android:layout_marginEnd="@dimen/button_margin"
-        android:enabled="false"
-        android:text="@string/cancel_button_str"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/saveBtn"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@id/leftGuideline" />
-    <Button
-        android:id="@+id/saveBtn"
-        style="@style/SimpleButtonStyle"
-        android:layout_marginStart="@dimen/button_margin"
-        android:enabled="false"
-        android:text="@string/save_button_str"
-        app:layout_constraintEnd_toStartOf="@id/rightGuideline"
-        app:layout_constraintStart_toEndOf="@id/cancelBtn"
-        app:layout_constraintTop_toTopOf="@id/cancelBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
