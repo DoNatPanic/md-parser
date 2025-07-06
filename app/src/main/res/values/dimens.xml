@@ -8,6 +8,7 @@
     <dimen name="button_margin">15dp</dimen>
     <dimen name="content_margin_top">32dp</dimen>
     <dimen name="upload_text_margin_start">16dp</dimen>
+    <dimen name="link_text_margin_end">16dp</dimen>
     <dimen name="icon_size">32dp</dimen>
     <dimen name="icon_size_large">64dp</dimen>
     <dimen name="progress_bar_margin_top">24dp</dimen>

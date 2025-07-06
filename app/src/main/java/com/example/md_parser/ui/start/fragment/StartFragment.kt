@@ -24,12 +24,6 @@ class StartFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-//        startViewerViewModel.onReload()
-//        startEditorModel.onReload()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

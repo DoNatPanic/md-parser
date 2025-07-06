@@ -7,8 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.md_parser.ui.upload.fragment.UploadUrlFragment
 import com.example.md_parser.ui.upload.fragment.UploadFileFragment
 
-class UploadPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
+class UploadPagerAdapter(fragment: Fragment) :
+    FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 2
 
