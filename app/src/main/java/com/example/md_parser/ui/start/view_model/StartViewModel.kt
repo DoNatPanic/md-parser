@@ -2,6 +2,7 @@ package com.example.md_parser.ui.start.view_model
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,12 +14,15 @@ import com.example.md_parser.parser.MarkdownParser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.BufferedInputStream
+import java.io.FileNotFoundException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.net.MalformedURLException
 
 class StartViewModel : ViewModel() {
-    private val markupData = MutableLiveData("""
+    private val markupData = MutableLiveData(
+        """
         ### Lorem ipsum
         
         Lorem ipsum **dolor sit amet**, consectetur adipiscing elit. Aliquam dui nunc, ultricies
@@ -50,14 +54,15 @@ class StartViewModel : ViewModel() {
         Integer euismod accumsan gravida. Quisque ut ipsum in nisi iaculis sodales. Curabitur
         pharetra arcu ex, malesuada blandit libero placerat ultrices. Duis id lacus vestibulum,
         congue lorem in, eleifend augue.
-        """.trimIndent())
+        """.trimIndent()
+    )
     val markupLiveData: LiveData<String> = markupData
 
     private val bitmaps = MutableLiveData<MutableMap<String, Bitmap>>(mutableMapOf())
     val bitmapsLiveData: LiveData<MutableMap<String, Bitmap>> = bitmaps
 
-    val markupElementsLiveData: LiveData<List<BlockElement>> = markupLiveData.map {
-        markup -> getMarkupElements(markup)
+    val markupElementsLiveData: LiveData<List<BlockElement>> = markupLiveData.map { markup ->
+        getMarkupElements(markup)
     }
 
     fun setMarkup(newMarkup: String) {
@@ -75,7 +80,13 @@ class StartViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             for (imageUrl in imageUrls) {
-                val url = URL(imageUrl)
+                var url: URL
+                try {
+                    url = URL(imageUrl)
+                } catch (e: MalformedURLException) {
+                    Log.e("ImageLoad", "Invalid image link ${imageUrl}")
+                    continue
+                }
                 val urlConnection = url.openConnection() as HttpURLConnection
                 urlConnection.connect()
 
@@ -85,8 +96,12 @@ class StartViewModel : ViewModel() {
                     instream.close()
 
                     val current = bitmaps.value
-                    imageUrl.let { current?.set(imageUrl, bmp) }
-                    bitmaps.postValue(current)
+                    if (bmp != null) {
+                        current?.set(imageUrl, bmp)
+                        bitmaps.postValue(current)
+                    }
+                } catch (e: FileNotFoundException) {
+                    Log.e("ImageLoad", "File not found - probably invalid link ${imageUrl}")
                 } finally {
                     urlConnection.disconnect()
                 }

@@ -111,20 +111,20 @@ class MarkdownParser {
                             emphasis.add(EmphasisRun(c.index, c.index, c.value))
                         }
                     }
-                    if (c.value == '[' && prev == '!') {
+                    else if (c.value == '[' && prev == '!') {
                         emphasis.add(EmphasisRun(c.index - 1, c.index, '!'))
                     }
-                    if (c.value == '(' && prev == ']') {
+                    else if (c.value == '(' && prev == ']') {
                         emphasis.add(EmphasisRun(c.index - 1, c.index, ']'))
                     }
-                    if (c.value == ')') {
+                    else if (c.value == ')') {
                         emphasis.add(EmphasisRun(c.index, c.index, ')'))
                     }
                     prev = c.value
                 }
 
                 val opens = mutableListOf<EmphasisRun>()
-                var lineResult = mutableListOf<InlineElement>()
+                val lineResult = mutableListOf<InlineElement>()
                 var tailStart = 0
                 var tailEnd = 0
                 for (run in emphasis) {
@@ -153,7 +153,7 @@ class MarkdownParser {
                                 }
                             }
                         }
-                    } else {
+                    } else if (run.char == '*' || run.char == '_' || run.char == '~') {
                         for (open in opens) {
                             if (open.char == run.char && open.length() == run.length()) {
                                 val content = line.substring(open.end + 1, run.start)
