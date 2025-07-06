@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.md_parser.R
@@ -44,7 +45,14 @@ class UploadFragment : Fragment() {
 
         viewModel.loadContentTrigger().observe(owner) { contentText ->
             fileContent = contentText.first
-            binding.loadBtn.isEnabled = contentText.first != null
+            binding.loadBtn.isEnabled = fileContent != null
+            if (fileContent.isNullOrEmpty()){
+                Toast.makeText(
+                    activity,
+                    "Ошибка загрузки",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         binding.pager.adapter = UploadPagerAdapter(
