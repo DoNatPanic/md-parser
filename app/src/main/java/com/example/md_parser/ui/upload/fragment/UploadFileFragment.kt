@@ -28,7 +28,7 @@ class UploadFileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.imgUploadIcon.setOnClickListener {
+        binding.layoutFileSelect.setOnClickListener {
             openDocumentLauncher.launch(arrayOf("text/plain"))
         }
 
