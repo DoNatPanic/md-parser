@@ -162,6 +162,19 @@ class MarkdownParserTest {
     }
 
     @Test
+    fun image_parsedSuccessfully() {
+        val testString = """![Lorem ipsum](https://shorturl.at/xCGz8) dolor sit amet"""
+        val result = MarkdownParser.parse(testString)
+        val expected = BlockElement.Paragraph(
+            listOf(
+                InlineElement.Image("Lorem ipsum", "https://shorturl.at/xCGz8"),
+                InlineElement.Regular(" dolor sit amet"),
+            )
+        )
+        assertEquals(listOf(expected), result)
+    }
+
+    @Test
     fun tableCorrect_parsedSuccessfully() {
         val testString = """
             | id | Column 1 | Column 2 |
@@ -172,25 +185,25 @@ class MarkdownParserTest {
         val result = MarkdownParser.parse(testString)
         val expected = BlockElement.Table(
             listOf(
-                BlockElement.TableRow(
+                TableComponent.TableRow(
                     listOf(
-                        BlockElement.TableCell("id"),
-                        BlockElement.TableCell("Column 1"),
-                        BlockElement.TableCell("Column 2"),
+                        TableComponent.TableCell("id"),
+                        TableComponent.TableCell("Column 1"),
+                        TableComponent.TableCell("Column 2"),
                     )
                 ),
-                BlockElement.TableRow(
+                TableComponent.TableRow(
                     listOf(
-                        BlockElement.TableCell("1"),
-                        BlockElement.TableCell("asdf"),
-                        BlockElement.TableCell("444.1"),
+                        TableComponent.TableCell("1"),
+                        TableComponent.TableCell("asdf"),
+                        TableComponent.TableCell("444.1"),
                     )
                 ),
-                BlockElement.TableRow(
+                TableComponent.TableRow(
                     listOf(
-                        BlockElement.TableCell("2"),
-                        BlockElement.TableCell("hjkl"),
-                        BlockElement.TableCell("55.77"),
+                        TableComponent.TableCell("2"),
+                        TableComponent.TableCell("hjkl"),
+                        TableComponent.TableCell("55.77"),
                     )
                 ),
             )

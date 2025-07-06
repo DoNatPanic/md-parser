@@ -1,7 +1,5 @@
 package com.example.md_parser.parser
 
-import kotlin.math.max
-
 sealed class InlineElement {
     data class Regular(val content: String) : InlineElement()
     data class Bold(val content: String) : InlineElement()
@@ -10,19 +8,18 @@ sealed class InlineElement {
     data class Image(val alt: String, val url: String) : InlineElement()
 }
 
+sealed class TableComponent {
+    data class TableCell(val content: String) : TableComponent()
+    data class TableRow(val children: List<TableCell>) : TableComponent()
+}
+
 sealed class BlockElement {
     data class Header(val level: Int, val content: String) : BlockElement()
     data class Paragraph(val children: List<InlineElement>) : BlockElement()
-    data class TableCell(val content: String) : BlockElement()
-    data class TableRow(val children: List<TableCell>) : BlockElement()
-    data class Table(val children: List<TableRow>) : BlockElement()
+    data class Table(val children: List<TableComponent.TableRow>) : BlockElement()
 }
 
 data class BlockBuilderItem(val type: String, val content: MutableList<String>)
-
-enum class ControlSequenceType {
-    STAR, UNDERSCORE, TILDA, IMAGE_OPEN, IMAGE_MID, IMAGE_CLOSE
-}
 
 data class EmphasisRun(val start: Int, var end: Int, val char: Char) {
     fun length(): Int {
@@ -151,7 +148,7 @@ class MarkdownParser {
                                         line.substring(linkStart + 2, open.start),
                                         line.substring(open.end + 1, run.start)
                                     )
-                                    tailEnd = open.start - 1
+                                    tailEnd = linkStart - 1
                                     break
                                 }
                             }
@@ -211,7 +208,7 @@ class MarkdownParser {
         }
 
         fun parseTable(content: List<String>): BlockElement.Table {
-            val rows = mutableListOf<BlockElement.TableRow>()
+            val rows = mutableListOf<TableComponent.TableRow>()
             for (line in content.withIndex()) {
                 if (line.index == 1) {
                     // delimiter row - ignore for now
@@ -219,8 +216,8 @@ class MarkdownParser {
                     val cells = line.value
                         .removeSurrounding("|")
                         .split("|")
-                        .map { BlockElement.TableCell(it.trim()) }
-                    rows.add(BlockElement.TableRow(cells))
+                        .map { TableComponent.TableCell(it.trim()) }
+                    rows.add(TableComponent.TableRow(cells))
                 }
             }
             return BlockElement.Table(rows)
