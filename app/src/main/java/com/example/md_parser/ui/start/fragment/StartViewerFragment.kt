@@ -149,7 +149,7 @@ class StartViewerFragment : Fragment() {
 
     private fun updateBitmaps(bitmaps: Map<String, Bitmap>) {
         for (p in images) {
-            if (bitmaps.containsKey(p.second)) {
+            if (bitmaps.containsKey(p.second) && bitmaps[p.second] != null) {
                 val i = p.first
                 val b = bitmaps[p.second]
                 i.setImageBitmap(b)

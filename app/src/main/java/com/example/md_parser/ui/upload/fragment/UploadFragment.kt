@@ -1,6 +1,5 @@
 package com.example.md_parser.ui.upload.fragment
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +21,8 @@ class UploadFragment : Fragment() {
 
     private lateinit var tabMediator: TabLayoutMediator
 
+    private var fileContent: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +43,7 @@ class UploadFragment : Fragment() {
         val owner = getViewLifecycleOwner()
 
         viewModel.loadContentTrigger().observe(owner) { contentText ->
+            fileContent = contentText.first
             binding.loadBtn.isEnabled = contentText.first != null
         }
 
@@ -56,5 +58,13 @@ class UploadFragment : Fragment() {
             }
         }
         tabMediator.attach()
+
+        binding.loadBtn.setOnClickListener{
+            val bundle = Bundle().apply {
+                 putString("MARKUP", fileContent)
+            }
+            parentFragmentManager.setFragmentResult("KEY", bundle)
+            findNavController().popBackStack()
+        }
     }
 }

@@ -85,7 +85,7 @@ class StartViewModel : ViewModel() {
                     instream.close()
 
                     val current = bitmaps.value
-                    current?.set(imageUrl, bmp)
+                    imageUrl.let { current?.set(imageUrl, bmp) }
                     bitmaps.postValue(current)
                 } finally {
                     urlConnection.disconnect()

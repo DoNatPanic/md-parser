@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import com.example.md_parser.databinding.FragmentUploadFileBinding
-import com.example.md_parser.ui.start.fragment.StartEditorFragment
 import com.example.md_parser.ui.upload.view_model.UploadViewModel
 
 class UploadFileFragment : Fragment() {
