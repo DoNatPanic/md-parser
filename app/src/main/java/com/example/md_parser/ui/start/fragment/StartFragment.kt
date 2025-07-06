@@ -17,7 +17,6 @@ import com.example.md_parser.ui.upload.view_model.UploadFileViewModel
 import com.example.md_parser.ui.upload.view_model.UploadPagerAdapter
 import com.example.md_parser.ui.upload.view_model.UploadUrlViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StartFragment : Fragment() {
 

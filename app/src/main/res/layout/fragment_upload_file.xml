@@ -32,15 +32,4 @@
             android:text="@string/file_name_default_str" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progress_upload"
-        style="@style/ProgressBarStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/progress_bar_margin_top"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_file_select" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
